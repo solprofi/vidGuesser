@@ -28,7 +28,6 @@ export default class Login extends Component {
       const {
         email,
         password,
-        errors,
       } = this.state;
 
       this.setState({
@@ -39,7 +38,7 @@ export default class Login extends Component {
       firebase
         .auth()
         .signInWithEmailAndPassword(email, password)
-        .then(() => {
+        .then(user => {
           this.setState({
             isLoading: false,
           });
@@ -47,7 +46,7 @@ export default class Login extends Component {
         .catch(error => {
           this.setState({
             isLoading: false,
-            errors: [{ message: error }],
+            errors: [error],
           });
         });
     }

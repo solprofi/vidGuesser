@@ -30,7 +30,6 @@ export default class SignUp extends Component {
     e.preventDefault();
 
     if (this.isFormValid()) {
-      console.log('Form is valid')
 
       const {
         userName,
@@ -63,14 +62,14 @@ export default class SignUp extends Component {
             })
             .catch(error => {
               this.setState({
-                errors: [{ message: error }],
+                errors: [error],
                 isLoading: false,
               });
             });
         })
         .catch(error => {
           this.setState({
-            errors: [{ message: error }],
+            errors: [error],
             isLoading: false,
           });
         });
