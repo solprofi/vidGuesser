@@ -63,14 +63,14 @@ export default class SignUp extends Component {
             })
             .catch(error => {
               this.setState({
-                errors: [error],
+                errors: [{ message: error }],
                 isLoading: false,
               });
             });
         })
         .catch(error => {
           this.setState({
-            errors: [error],
+            errors: [{ message: error }],
             isLoading: false,
           });
         });
