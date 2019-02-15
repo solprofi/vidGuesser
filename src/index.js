@@ -11,6 +11,7 @@ import Login from './components/auth/Login/Login';
 import firebase from './firebase';
 import rootReducer from './reducers';
 import { setUser, clearUser } from './actions';
+import Spinner from './components/Spinner/Spinner';
 
 const store = createStore(rootReducer, composeWithDevTools());
 
@@ -31,17 +32,24 @@ class Root extends Component {
   }
 
   render() {
+    const { isLoading } = this.props;
+
     return (
-      <Switch>
-        <Route path='/' exact component={App} />
-        <Route path='/signUp' exact component={SignUp} />
-        <Route path='/login' exact component={Login} />
-      </Switch>
+      isLoading ? <Spinner /> :
+        <Switch>
+          <Route path='/' exact component={App} />
+          <Route path='/signUp' exact component={SignUp} />
+          <Route path='/login' exact component={Login} />
+        </Switch>
     )
   }
 }
 
-const RootWithHistory = withRouter(connect(null, { setUser, clearUser })(Root));
+const mapStateToProps = state => ({
+  isLoading: state.user.isLoading,
+});
+
+const RootWithHistory = withRouter(connect(mapStateToProps, { setUser, clearUser })(Root));
 
 ReactDOM.render(
   <Provider store={store}>

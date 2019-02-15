@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Segment, Button, Icon, Header, Grid, Form, Message } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import Zoom from 'react-reveal/Zoom';
 
 import firebase from '../../../firebase';
 
@@ -98,15 +99,17 @@ export default class Login extends Component {
         className='app'
       >
         <Grid.Column style={{ maxWidth: 450 }}>
-          <Header
-            as='h1'
-            color='red'
-            icon
-            size='huge'
-          >
-            <Icon name='thumbs up outline' />
-            VidGuesser
+          <Zoom>
+            <Header
+              as='h1'
+              color='red'
+              icon
+              size='huge'
+            >
+              <Icon name='thumbs up outline' />
+              VidGuesser
           </Header>
+          </Zoom>
 
           <Form onSubmit={this.handleSubmit}>
             <Segment raised>
